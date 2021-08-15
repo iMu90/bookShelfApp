@@ -15,13 +15,22 @@ class SearchBookApiService {
     let constant = Constants()
     func searchBooks(userInput: String, completion: @escaping (Bool, Response?, Error?) ->()) {
         
-        let googleUrl: String = "https://www.googleapis.com/books/v1/volumes?q=\(userInput)&key=\(constant.BOOK_API)&maxResults=\(constant.PER_PAGE_ITEMS)"
+        let searchText = userInput.replacingOccurrences(of: " ", with: "_")
+        print("8888888 \(searchText)")
+        let googleUrl: String = "https://www.googleapis.com/books/v1/volumes?q=\(searchText)&key=\(constant.BOOK_API)&maxResults=\(constant.PER_PAGE_ITEMS)"
+    
         
         var request = URLRequest(url: URL(string: googleUrl)!)
+        
         
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.addValue("q", forHTTPHeaderField: userInput)
+//        request.addValue("key", forHTTPHeaderField: constant.BOOK_API)
+//        request.addValue("maxResults", forHTTPHeaderField: String(constant.PER_PAGE_ITEMS))
+        
+        
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil else {

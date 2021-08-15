@@ -89,14 +89,23 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate {
                     }
                     
                     if let data = data {
-                        
-                        DispatchQueue.main.async {
-                            self.result = data.items!
-                            self.collectionView.reloadData()
-                            self.updateViewLayout()
-                            self.searchBtnOutlet.isEnabled = true
-                            self.searchBtnOutlet.backgroundColor = UIColor.init(named: "customGreen")
-                            self.searchBtnOutlet.setTitle("Search", for: .normal)
+                        if let items = data.items {
+                            DispatchQueue.main.async {
+                                self.result = items
+                                self.collectionView.reloadData()
+                                self.updateViewLayout()
+                                self.searchBtnOutlet.isEnabled = true
+                                self.searchBtnOutlet.backgroundColor = UIColor.init(named: "customGreen")
+                                self.searchBtnOutlet.setTitle("Search", for: .normal)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                self.generateAlert(title: "ERROR", message: "No books found!", actionTitle: "OK")
+                                self.searchBtnOutlet.isEnabled = true
+                                self.searchBtnOutlet.backgroundColor = UIColor.init(named: "customGreen")
+                                self.searchBtnOutlet.setTitle("Search", for: .normal)
+                            }
+                            
                         }
                         
                     }
