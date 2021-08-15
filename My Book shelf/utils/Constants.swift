@@ -8,6 +8,6 @@
 import Foundation
 
 struct Constants {
-    let BOOK_API: String = "GOOGLE_API_KEY"
+    let BOOK_API: String = "AIzaSyAgVQZdqjVXqJ8SF4osvyxtIFCm9jBDsTw"
     let PER_PAGE_ITEMS: Int = 15
 }
