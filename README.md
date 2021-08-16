@@ -18,6 +18,6 @@ bookmark a book for later reference
 
 
 # requirement 
-1. `xCode version 12.5`
-2. `iOS 14.5`
-3. `Swift 4.0`
+1. `xCode version 12.5+`
+2. `iOS 14.5+`
+3. `Swift 4.0+`
